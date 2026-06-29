@@ -1,0 +1,7 @@
+flask
+flask-sqlalchemy
+flask-loguin
+qrcode
+pillow
+werkzeug
+gunicorn
