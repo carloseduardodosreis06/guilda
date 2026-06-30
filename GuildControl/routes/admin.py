@@ -1,35 +1,20 @@
-# routes/admin.py
+```python
+from flask import Blueprint, render_template, request, redirect, url_for
 
-from flask import Blueprint, render_template, redirect, url_for
+admin_bp = Blueprint('admin', __name__)
 
-admin = Blueprint("admin", __name__)
+@admin_bp.route("/servicos")
+def configurar_servicos():
+    return render_template("servicos.html")
 
-
-@admin.route("/admin")
-def painel_admin():
-    return render_template("dashboard.html")
-
-
-@admin.route("/admin/usuarios")
-def usuarios():
-    return render_template("perfil.html")
-
-
-@admin.route("/admin/guildas")
-def guildas():
-    return render_template("guilda.html")
-
-
-@admin.route("/admin/pagamentos")
-def pagamentos():
-    return render_template("pagamentos.html")
-
-
-@admin.route("/admin/ranking")
-def ranking():
-    return render_template("ranking.html")
-
-
-@admin.route("/admin/sair")
-def sair():
-    return redirect(url_for("auth.login"))
+@admin_bp.route("/criar_squad", methods=["POST"])
+def criar_squad():
+    if request.method == "POST":
+        nome_linha = request.form.get("nome_linha")
+        descricao_linha = request.form.get("descricao_linha")
+        
+        # Lógica para o Bot criar a linha automaticamente
+        print(f"Bot criando squad: {nome_linha}")
+        
+        return redirect(url_for("admin.configurar_servicos"))
+```
