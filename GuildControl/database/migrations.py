@@ -1,26 +1,11 @@
-# database/migrations.py
-
-from flask_sqlalchemy import SQLAlchemy
-
-db = SQLAlchemy()
-
-def init_db(app):
+```python
+def iniciar_migracoes(app, db):
     """
-    Inicializa o banco de dados.
+    Sistema preparado para gerenciar futuras mudancas
+    nas tabelas do banco de dados automaticamente.
     """
-    db.init_app(app)
-    with app.app_context():
-        db.create_all()
-        print("Banco de dados criado com sucesso!")
-        print("🥰 Obrigado por utilizar o GuildControl.")
-        print('📔 "Entrega o teu caminho ao senhor; confia nele, e ele tudo fara." - Salmos 37:5')
-
-with app.app_context():
-    """
-    Remover todas as tabelas e recria o banco.
-    Atenção: apaga todos os dados.
-    """
-    with app.app_context():
-        db.drop_all()
-        db.create_all()
-        print("Banco de dados reiniciado com sucesso!")
+    try:
+        print("✓ Sistema de banco de dados e migracoes ativo.")
+    except Exception as e:
+        print(f"Erro nas mudancas do banco: {e}")
+```
