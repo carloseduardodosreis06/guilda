@@ -1,4 +1,3 @@
-```python
 def iniciar_migracoes(app, db):
     """
     Sistema preparado para gerenciar futuras mudancas
@@ -8,4 +7,3 @@ def iniciar_migracoes(app, db):
         print("✓ Sistema de banco de dados e migracoes ativo.")
     except Exception as e:
         print(f"Erro nas mudancas do banco: {e}")
-```
