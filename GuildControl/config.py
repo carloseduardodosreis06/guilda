@@ -1,4 +1,4 @@
-```python id="wq8k1m"
+id="wq8k1m"
 from flask import Flask, render_template, redirect, url_for
 
 # Puxa a configuração e o banco de dados das suas respectivas pastas
@@ -50,5 +50,4 @@ def create_app():
 app = create_app()
 
 if __name__ == "__main__":
-    app.run(debug=True)
-```
+    app.run(debug=True
