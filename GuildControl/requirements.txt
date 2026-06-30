@@ -1,7 +1,6 @@
-flask
-flask-sqlalchemy
-flask-login
+Flask
+Flask-SQLAlchemy
 qrcode
-pillow
-werkzeug
+Pillow
+Werkzeug
 gunicorn
