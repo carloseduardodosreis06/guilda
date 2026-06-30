@@ -1,4 +1,3 @@
-```python
 from werkzeug.security import generate_password_hash, check_password_hash
 
 class Helpers:
@@ -11,4 +10,3 @@ class Helpers:
     def verificar_senha(senha_criptografada, senha_digitada):
         """Valida se a senha digitada no login bate com a senha do banco"""
         return check_password_hash(senha_criptografada, senha_digitada)
-```
