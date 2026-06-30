@@ -1,8 +1,7 @@
-# routes/auth.py
-
+```python
 from flask import Blueprint, render_template, request, redirect, url_for
 
-auth = Blueprint("auth", __name__)
+auth = Blueprint('auth', __name__)
 
 @auth.route("/", methods=["GET", "POST"])
 def cadastro():
@@ -10,24 +9,10 @@ def cadastro():
         email = request.form.get("email")
         senha = request.form.get("senha")
         
-        if not email or not senha:
-            return redirect(url_for("auth.cadastro"))
+        if email and senha:
+            # Aqui depois conectamos com seu banco de dados
+            return redirect(url_for("auth.login"))
             
-        # Tenta salvar o usuário usando a lógica do seu banco de dados
-        try:
-            from modelos import db, Usuario  # Se der erro de import, remova ou comente essa linha
-            usuario_existente = Usuario.query.filter_by(email=email).first()
-            if usuario_existente:
-                return redirect(url_for("auth.cadastro"))
-                
-            novo_usuario = Usuario(email=email, senha=senha)
-            db.session.add(novo_usuario)
-            db.session.commit()
-        except Exception:
-            pass # Se o seu modelo for diferente, ele ignora o banco e deixa cadastrar por enquanto
-            
-        return redirect(url_for("auth.login"))
-        
     return render_template("cadastro.html")
 
 @auth.route("/login", methods=["GET", "POST"])
@@ -36,14 +21,8 @@ def login():
         email = request.form.get("email")
         senha = request.form.get("senha")
         
-        if email and senha:
-            try:
-                from modelos import db, Usuario
-                usuario = Usuario.query.filter_by(email=email, senha=senha).first()
-                if usuario:
-                    return redirect(url_for("dashboard"))
-            except Exception:
-                return redirect(url_for("dashboard")) # Se o banco falhar, deixa entrar de qualquer jeito para testar
+        if email == "admin@email.com" and senha == "123456": # Exemplo de teste
+            return redirect(url_for("dashboard")) # Redireciona para o app.py principal
             
         return redirect(url_for("auth.login"))
         
@@ -51,4 +30,7 @@ def login():
 
 @auth.route("/logout")
 def logout():
+    return redirect(url_for("auth.login"))
+```
+
     return redirect(url_for("auth.login"))
