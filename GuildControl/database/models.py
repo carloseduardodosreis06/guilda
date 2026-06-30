@@ -1,4 +1,3 @@
-```python
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
@@ -30,4 +29,3 @@ class SquadBot(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nome_linha = db.Column(db.String(100), nullable=False)
     descricao_linha = db.Column(db.Text, nullable=True)
-```
