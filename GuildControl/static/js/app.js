@@ -1,4 +1,3 @@
-```javascript
 // Comportamentos Globais de Interação do GuildControl
 document.addEventListener("DOMContentLoaded", function () {
     console.log("✓ Scripts globais do GuildControl carregados.");
@@ -29,5 +28,3 @@ function mascaraTelefone(input) {
         input.value = valor;
     }
 }
-```
-
