@@ -124,8 +124,14 @@ button:hover{
     <div class="descricao">
         Gerencie membros, organize lines, acompanhe pontuações,horas jogadas e domine cada guerra de guilda.
     </div>
-
-    <input type="email" placeholder="Digite seu email">
-
-    <input type="password" placeholder="Digite sua senha">
-     
+  <form method="POST" action="/login">
+    <input type="email" name="email" placeholder="Digite seu email" style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc;">
+    <input type="password" name="senha" placeholder="Digite sua senha" style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc;">
+    
+    <button type="submit" style="width: 100%; padding: 12px; background-color: #00bcd4; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 16px; margin-top: 10px;">
+        Concluir Login
+    </button>
+</form>
+</div>
+</body>
+</html>
