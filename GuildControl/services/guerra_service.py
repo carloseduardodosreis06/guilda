@@ -1,44 +1,21 @@
-# services/guerra_service.py
+```python
+import datetime
 
-guerras = []
+class HorasService:
+    @staticmethod
+    def registrar_atividade_membro(id_jogo):
+        """Gera um log com o dia e horário que o jogador logou ou pontuou"""
+        horario_atual = datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        print(f"[LOG ATIVIDADE] Jogador ID {id_jogo} ativo em: {horario_atual}")
+        return horario_atual
 
+    @staticmethod
+    def calcular_tempo_line(horas_jogadas):
+        """Valida se a line cumpriu a meta de horas mínimas estabelecidas"""
+        meta_horas = 10
+        if horas_jogadas >= meta_horas:
+            return "Meta Cumprida ✓"
+        return f"Pendente ({meta_horas - horas_jogadas}h restantes)"
+```
 
-def adicionar_guerra(data, inimigo, kills, colocacao):
-    guerras.append({
-        "data": data,
-        "inimigo": inimigo,
-        "kills": kills,
-        "colocacao": colocacao
-    })
-
-
-def listar_guerras():
-    return guerras
-
-
-def total_kills():
-    total = 0
-
-    for guerra in guerras:
-        total += guerra["kills"]
-
-    return total
-
-
-def atualizar_guerra(data, kills, colocacao):
-    for guerra in guerras:
-        if guerra["data"] == data:
-            guerra["kills"] = kills
-            guerra["colocacao"] = colocacao
-            return True
-
-    return False
-
-
-def remover_guerra(data):
-    global guerras
-
-    guerras = [
-        guerra for guerra in guerras
-        if guerra["data"] != data
     ]
