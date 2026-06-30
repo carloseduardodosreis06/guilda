@@ -25,7 +25,7 @@ with app.app_context():
     
 # Registro dos Blueprints no servidor Flask
 app.register_blueprint(auth)
-app.register_blueprint(guildas)
+app.register_blueprint(guildas_bp)
 app.register_blueprint(membros)
 
 # Dados de teste para compatibilidade com o front-end
