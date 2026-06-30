@@ -1,34 +1,29 @@
-# services/ranking_service.py
+```python
+from database.models import MembroGuilda
 
-ranking = []
-
-
-def adicionar_line(nome, pontos):
-    ranking.append({
-        "nome": nome,
-        "pontos": pontos
-    })
-
-
-def listar_ranking():
-    return sorted(
-        ranking,
-        key=lambda line: line["pontos"],
-        reverse=True
-    )
-
-
-def atualizar_pontos(nome, pontos):
-    for line in ranking:
-        if line["nome"] == nome:
-            line["pontos"] = pontos
-            return True
-    return False
-
-
-def remover_line(nome):
-    global ranking
-    ranking = [
-        line for line in ranking
-        if line["nome"] != nome
-    ]
+class RankingService:
+    @staticmethod
+    def calcular_ranking_geral():
+        """Busca os membros no banco e ordena do maior pontuador para o menor"""
+        try:
+            # Puxa os membros ordenando pela soma de Honra + Guerra
+            membros = MembroGuilda.query.all()
+            
+            # Cria uma lista organizada calculando o total de pontos de cada um
+            ranking = []
+            for membro in membros:
+                total_pontos = membro.honra + membro.guerra
+                ranking.append({
+                    "nick": membro.nick,
+                    "honra": membro.honra,
+                    "guerra": membro.guerra,
+                    "total": total_pontos
+                })
+            
+            # Ordena a lista do maior total para o menor
+            ranking_ordenado = sorted(ranking, key=lambda x: x['total'], reverse=True)
+            return ranking_ordenado
+        except Exception:
+            # Caso o banco esteja vazio, retorna um exemplo padrão para não quebrar a tela
+            return [{"nick": "Junio", "honra": 0, "guerra": 0, "total": 0}]
+```
