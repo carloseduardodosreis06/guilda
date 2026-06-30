@@ -5,7 +5,7 @@ from database.models import db, Usuario, MembroGuilda, SquadBot, Pagamento
 
 # Importação dos Blueprints organizados nas subpastas
 from routes.auth import auth
-from routes.guildas import guildas
+from routes.guildas import guildas_dp
 from routes.membros import membros
 
 app = Flask(__name__)
