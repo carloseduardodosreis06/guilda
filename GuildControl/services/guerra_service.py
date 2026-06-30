@@ -1,4 +1,3 @@
-```python
 import datetime
 
 class HorasService:
@@ -16,6 +15,3 @@ class HorasService:
         if horas_jogadas >= meta_horas:
             return "Meta Cumprida ✓"
         return f"Pendente ({meta_horas - horas_jogadas}h restantes)"
-```
-
-    ]
