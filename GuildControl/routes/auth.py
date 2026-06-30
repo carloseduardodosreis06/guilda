@@ -18,8 +18,8 @@ def login():
             return redirect(url_for("dashboard"))
 
         return redirect(url_for("auth.login"))
-
-     return render_template("login.html")
+        
+    return render_template("login.html")
 
 @auth.route("/logout")
 def logout():
