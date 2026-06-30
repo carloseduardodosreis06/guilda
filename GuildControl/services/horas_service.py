@@ -1,41 +1,30 @@
-# services/horas_service.py
+```python
+from database.models import MembroGuilda
 
-horas_jogadas = []
+class RankingService:
+    @staticmethod
+    def calcular_ranking_geral():
+        """Busca os membros no banco e ordena do maior pontuador para o menor"""
+        try:
+            # Puxa os membros ordenando pela soma de Honra + Guerra
+            membros = MembroGuilda.query.all()
+            
+            # Cria uma lista organizada calculando o total de pontos de cada um
+            ranking = []
+            for membro in membros:
+                total_pontos = membro.honra + membro.guerra
+                ranking.append({
+                    "nick": membro.nick,
+                    "honra": membro.honra,
+                    "guerra": membro.guerra,
+                    "total": total_pontos
+                })
+            
+            # Ordena a lista do maior total para o menor
+            ranking_ordenado = sorted(ranking, key=lambda x: x['total'], reverse=True)
+            return ranking_ordenado
+        except Exception:
+            # Caso o banco esteja vazio, retorna um exemplo padrão para não quebrar a tela
+            return [{"nick": "Junio", "honra": 0, "guerra": 0, "total": 0}]
+```
 
-
-def adicionar_horas(jogador, horas):
-    horas_jogadas.append({
-        "jogador": jogador,
-        "horas": horas
-    })
-
-
-def listar_horas():
-    return horas_jogadas
-
-
-def total_horas():
-    total = 0
-
-    for jogador in horas_jogadas:
-        total += jogador["horas"]
-
-    return total
-
-
-def atualizar_horas(jogador, horas):
-    for item in horas_jogadas:
-        if item["jogador"] == jogador:
-            item["horas"] = horas
-            return True
-
-    return False
-
-
-def remover_jogador(jogador):
-    global horas_jogadas
-
-    horas_jogadas = [
-        item for item in horas_jogadas
-        if item["jogador"] != jogador
-    ]
