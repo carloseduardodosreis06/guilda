@@ -1,96 +1,109 @@
+```html
 <!DOCTYPE html>
-<html lang="pt_BR">
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GuildControl - Minha Guilda</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { display: flex; flex-direction: row; background-color: #0b111e; color: #ffffff; min-height: 100vh; }
+        
+        .sidebar { width: 280px; background-color: #111a2e; padding: 20px; display: flex; flex-direction: column; gap: 10px; border-right: 1px solid #1f2d4a; flex-shrink: 0; }
+        .sidebar h2 { font-size: 22px; color: #a855f7; margin-bottom: 25px; text-align: center; font-weight: bold; }
+        .sidebar a { color: #cbd5e1; text-decoration: none; padding: 12px 15px; border-radius: 6px; font-weight: 500; display: block; white-space: nowrap; }
+        .sidebar a:hover, .sidebar a.active { background-color: #a855f7; color: #ffffff; font-weight: bold; }
+        .sidebar .logout { margin-top: auto; background-color: #ea580c; color: white; text-align: center; }
 
-</html>
+        .main-content { flex: 1; padding: 30px; background-color: #0d0f1d; }
+        .title-section h1 { font-size: 24px; font-weight: bold; margin-bottom: 5px; }
+        .title-section p { color: #64748b; font-size: 14px; margin-bottom: 20px; }
 
-<meta charset="UTF-8">
+        .btn-purple { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; background-color: #9333ea; color: white; border: none; border-radius: 8px; padding: 12px; font-size: 15px; font-weight: bold; cursor: pointer; text-decoration: none; margin-bottom: 20px; }
+        
+        .guilda-box { background-color: #13172c; border: 1px solid #222646; border-radius: 12px; padding: 20px; margin-bottom: 25px; }
+        .actions-row { display: flex; gap: 10px; margin-top: 15px; }
+        .btn-outline { flex: 1; background: none; border: 1px solid #2d325a; padding: 10px; border-radius: 8px; color: #cbd5e1; font-size: 14px; cursor: pointer; }
+        .btn-delete { color: #f87171; border-color: #451a23; }
 
-<title>Guilda</title>
+        .line-container { background-color: #171d37; border: 1px solid #272e54; border-radius: 12px; padding: 20px; margin-top: 15px; }
+        .line-title { font-size: 16px; font-weight: bold; margin-bottom: 20px; }
 
-<style>
+        /* Grid que vira 1 coluna no celular se a tela for muito pequena */
+        .slots-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 20px; }
+        .slot-card { background-color: #1b223c; border: 1px solid #2d3663; border-radius: 8px; padding: 15px; min-height: 120px; }
+        .slot-label { font-size: 11px; color: #64748b; margin-bottom: 6px; display: block; }
+        
+        .player-info h4 { font-size: 15px; color: #ffffff; font-weight: bold; }
+        .player-info p { font-size: 12px; color: #94a3b8; margin-top: 2px; }
+        .player-info .stats { font-size: 12px; margin-top: 8px; font-weight: bold; }
+        .player-info .stat-h { color: #38bdf8; margin-right: 10px; }
+        .player-info .stat-g { color: #f97316; }
+        .slot-vazio { display: flex; align-items: center; justify-content: center; color: #475569; font-size: 13px; height: 60px; }
 
-body{
-    background:#0d0018;
-    color:white;
-    font-family:Arial;
-    margin:0;
-}
+        .line-footer { display: flex; justify-content: space-between; border-top: 1px solid #2d3663; padding-top: 15px; font-size: 14px; }
+        .total-pts { color: #eab308; font-weight: bold; }
 
-.container{
-    padding:30px;
-}
-
-.card{
-    background:#1b0030;
-    border-radius:15px;
-    padding:20px;
-    margin-bottom:20px;
-}
-
-input{
-    margin-top:15px;
-    padding:12px;
-    margin-top:10px;
-    border:none;
-    border-radius:10px;
-}
-
-button{
-    margin-top:15px;
-    padding:12px;
-    width:100%;
-    background:#9d00ff;
-    border:none;
-    border-radius:10px;
-    color:white;
-    cursor:pointer;
-}
-
-.line{
-    background:#260040;
-    padding:15px;
-    border-radius:10px;
-    margin-top:10px;
-}
-
-</style>
-
-</heard>
-
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            .sidebar { width: 100%; border-right: none; border-bottom: 1px solid #1f2d4a; flex-direction: row; overflow-x: auto; padding: 15px; gap: 8px; scrollbar-width: none; }
+            .sidebar::-webkit-scrollbar { display: none; }
+            .sidebar h2 { display: none; }
+            .sidebar a { padding: 10px 14px; font-size: 14px; }
+            .sidebar .logout { margin-top: 0; }
+            .main-content { padding: 15px; }
+            .slots-grid { grid-template-columns: 1fr; } /* Uma coluna na tela do celular */
+        }
+    </style>
+</head>
 <body>
+    <div class="sidebar">
+        <h2>⚔️ GuildControl</h2>
+        <a href="/dashboard">Painel Inicial</a>
+        <a href="/guilda" class="active">Minha Guilda</a>
+        <a href="/planos">Planos da Guilda</a>
+        <a href="/pontuacoes">Pontuação</a>
+        <a href="/servicos">Serviços</a>
+        <a href="/auth/logout" class="logout">Sair</a>
+    </div>
 
-<div class="container">
-  
-<h1>Gerenciar Guilda</h1>
+    <div class="main-content">
+        <div class="title-section">
+            <h1>Minhas Guildas</h1>
+            <p>Gerencie suas guildas, lines e membros</p>
+        </div>
 
-</div class="card">
+        <a href="#" class="btn-purple">+ Nova Guilda</a>
 
-<h2>Criar Guilda</h2>
+        <div class="guilda-box">
+            <h2>Fogo</h2>
+            <div class="actions-row">
+                <button class="btn-outline">✏️ Editar</button>
+                <button class="btn-outline btn-delete">🗑️ Deletar</button>
+            </div>
 
-<input type="text" placeholder="Nome da Gulda">
-
-<button>Criar Guilda</button>
-
-</div>
-
-<div class="card">
-
-<h2>Lines</h2>
-
-<div class="line">Line 1 - 4 Jogadores</div>
-<div class="line">Line 2 - 4 Jogadores</div>
-<div class="line">Line 3 - 4 Jogadores</div>
-<div class="line">Line 4 - 4 Jogadores</div>
-<div class="line">Line 5 - 4 Jogadores</div>
-<div class="line">Line 6 - 4 Jogadores</div>
-<div class="line">Line 7 - 4 Jogadores</div>
-<div class="line">Line 8 - 4 Jogadores</div>
-<div class="line">Line 9 - 4 Jogadores</div>
-<div class="line">Line 10 - 4 Jogadores</div>
-</div>
-
-</div>
-
+            <div class="line-container">
+                <div class="line-title">Line 1</div>
+                <div class="slots-grid">
+                    <div class="slot-card">
+                        <span class="slot-label">Jogador 1</span>
+                        <div class="player-info">
+                            <h4>Junio</h4>
+                            <p>ID: 2345986575</p>
+                            <p>Tel: (99) 985479885</p>
+                            <div class="stats"><span class="stat-h">H: 0</span><span class="stat-g">G: 0</span></div>
+                        </div>
+                    </div>
+                    <div class="slot-card"><span class="slot-label">Jogador 2</span><div class="slot-vazio">👥 Vazio</div></div>
+                    <div class="slot-card"><span class="slot-label">Jogador 3</span><div class="slot-vazio">👥 Vazio</div></div>
+                    <div class="slot-card"><span class="slot-label">Jogador 4</span><div class="slot-vazio">👥 Vazio</div></div>
+                </div>
+                <div class="line-footer"><span>Total:</span><span class="total-pts">0 pts</span></div>
+            </div>
+        </div>
+    </div>
 </body>
+</html>
+```
 
 </html>
