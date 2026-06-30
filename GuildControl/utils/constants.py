@@ -1,23 +1,18 @@
-# utils/constants.py
+```python
+# Configurações de Planos da Guilda
+PLANO_GRATIS = "Grátis"
+PLANO_PREMIUM_7D = "Premium 7D"
+PLANO_PREMIUM_20D = "Premium 20D"
+PLANO_PREMIUM_30D = "Premium 30D"
 
-APP_NAME = "GuildControl"
-APP_VERSION = "1.0.0"
+VALOR_PLANO_7D = 15.00
+VALOR_PLANO_20D = 30.00
+VALOR_PLANO_30D = 60.00
 
-FREE_GUILDS = 1
-FREE_LINES = 10
+# Limites do Bot de Automação
+SLOTS_POR_LINE = 4
+TOTAL_LINES_MAX = 4
 
-PRO_GUILDS = 5
-PRO_LINES = 20
-PRO_DAYS = 7
-
-MAX_MEMBERS_PER_LINE = 4
-
-PIX_EXPIRATION_DAYS = 30
-
-STATUS_ATIVO = "ativo"
-STATUS_INATIVO = "inativo"
-
-RANK_DEFAULT_POINTS = 0
-
-ADMIN = "admin"
-MEMBRO = "membro"
+# Chave PIX Padrão do Sistema
+CHAVE_PIX_SISTEMA = "ce023233@gmail.com"
+```
