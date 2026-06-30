@@ -1,4 +1,3 @@
-```python
 # Configurações de Planos da Guilda
 PLANO_GRATIS = "Grátis"
 PLANO_PREMIUM_7D = "Premium 7D"
@@ -15,4 +14,3 @@ TOTAL_LINES_MAX = 4
 
 # Chave PIX Padrão do Sistema
 CHAVE_PIX_SISTEMA = "ce023233@gmail.com"
-```
