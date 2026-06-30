@@ -59,16 +59,20 @@ h1{
 <div class="container">
 <h1>Criar Conta</h1>
 <div class="card">
-<h2>Cadastro</h2>
-<input type="text" placeholder="Nome">
-<input type="email" placeholder="Email">
-<input type="password" placeholder="Senha">
-<input type="password" placeholder="Confirmar Senha">
-<button>Criar Conta</button>
+<div class="card">
+        <h2>Cadastro</h2>
+        
+        <form method="POST" action="/">
+            <input type="text" name="nome" placeholder="Nome" style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc;">
+            <input type="email" name="email" placeholder="Email" style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc;">
+            <input type="password" name="senha" placeholder="Senha" style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc;">
+            <input type="password" name="confirmar_senha" placeholder="Confirmar Senha" style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc;">
+            
+            <button type="submit" style="width: 100%; padding: 12px; background-color: #00bcd4; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 16px; margin-top: 10px;">
+                Criar Conta
+            </button>
+        </form>
+    </div>
 </div>
-
-</div>
-
 </body>
-
 </html>
