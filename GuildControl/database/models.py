@@ -5,6 +5,7 @@ db = SQLAlchemy()
 # Tabela de Usuários (Quem faz login e cadastro no sistema)
 class Usuario(db.Model):
     __tablename__ = 'usuarios'
+    
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
@@ -14,6 +15,7 @@ class Usuario(db.Model):
 # Tabela dos Membros da Guilda (Os slots das lines, ex: "Junio")
 class MembroGuilda(db.Model):
     __tablename__ = 'membros_guilda'
+    
     id = db.Column(db.Integer, primary_key=True)
     nick = db.Column(db.String(100), nullable=False)
     id_jogo = db.Column(db.String(50), unique=True, nullable=False)
@@ -26,6 +28,19 @@ class MembroGuilda(db.Model):
 # Tabela de Squads criados pela Automação do Bot
 class SquadBot(db.Model):
     __tablename__ = 'squads_bot'
+    
     id = db.Column(db.Integer, primary_key=True)
-    nome_linha = db.Column(db.String(100), nullable=False)
-    descricao_linha = db.Column(db.Text, nullable=True)
+    nome_squad = db.Column(db.String(100), nullable=False)
+    id_discord_canal = db.Column(db.String(50), nullable=False)
+
+# Tabela de Controle de Pagamentos das Mensalidades e PIX
+class Pagamento(db.Model):
+    __tablename__ = 'pagamentos'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    usuario_id = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable=False)
+    guilda_id = db.Column(db.String(50), nullable=False)  # ID da guilda no Discord
+    valor = db.Column(db.Float, nullable=False)
+    status = db.Column(db.String(20), default="Pendente")  # Pendente, Pago, Atrasado
+    data_vencimento = db.Column(db.String(20), nullable=False)
+    data_pagamento = db.Column(db.String(20), nullable=True)
