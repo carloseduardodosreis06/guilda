@@ -1,37 +1,14 @@
-# utils/helpers.py
+```python
+from werkzeug.security import generate_password_hash, check_password_hash
 
-def datetime import datetime
+class Helpers:
+    @staticmethod
+    def criptografar_senha(senha):
+        """Transforma a senha em um código seguro antes de salvar no banco"""
+        return generate_password_hash(senha)
 
-def data_atual():
-    return datetime.now().strftime("%d/%m/%Y")
-
-def hora_atual():
-    return datetime.now().strftime("%H:%M")
-
-def data_hora_atual():
-    return datetime.now().strftime("%d/%m/%Y %H:%M")
-
-def formatar_nome(nome):
-    return nome.strip().title()
-
-def formatar_telefone(telefone):
-    telefone = telefone.replace(" ", "").replace("-", "")
-    return telefone
-
-def formatar_pontos(valor):
-    try:
-        return int(valor)
-    except:
-        return 0
-
-def mensagem_sucesso(msg):
-    return{
-        "status": "sucesso",
-        "mensagem": msg
-    }
-
-def mensagem_erro(msg):    
-    return{
-        "status": "erro",
-        "mensagem": msg
-    }
+    @staticmethod
+    def verificar_senha(senha_criptografada, senha_digitada):
+        """Valida se a senha digitada no login bate com a senha do banco"""
+        return check_password_hash(senha_criptografada, senha_digitada)
+```
