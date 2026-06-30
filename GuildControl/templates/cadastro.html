@@ -1,33 +1,46 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GuildControl - Criar Conta</title>
+    <title>GuildControl - Pagamentos</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        body { background-color: #0b111e; display: flex; justify-content: center; align-items: center; min-height: 100vh; color: #ffffff; }
-        .card { width: 100%; max-width: 400px; background-color: #182235; border: 1px solid #26354e; border-radius: 12px; padding: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); text-align: center; }
-        h2 { font-size: 24px; margin-bottom: 25px; color: #ffffff; font-weight: 600; }
-        input { width: 100%; background-color: #1f2b42; border: 1px solid #334464; border-radius: 8px; padding: 12px; color: #ffffff; font-size: 14px; outline: none; margin-bottom: 15px; transition: 0.3s; }
-        input:focus { border-color: #a855f7; }
-        input::placeholder { color: #64748b; }
-        .btn-submit { width: 100%; background-color: #9333ea; color: #ffffff; border: none; border-radius: 8px; padding: 14px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 12px rgba(147,51,234,0.3); }
-        .btn-submit:hover { background-color: #a855f7; }
-        .link-footer { margin-top: 20px; display: block; color: #a855f7; text-decoration: none; font-size: 14px; font-weight: 500; }
-        .link-footer:hover { text-decoration: underline; }
+        body { display: flex; background-color: #0b111e; color: #ffffff; min-height: 100vh; }
+        .sidebar { width: 280px; background-color: #111a2e; padding: 20px; display: flex; flex-direction: column; gap: 10px; border-right: 1px solid #1f2d4a; }
+        .sidebar h2 { font-size: 22px; color: #a855f7; margin-bottom: 25px; text-align: center; font-weight: bold; }
+        .sidebar a { color: #cbd5e1; text-decoration: none; padding: 12px 15px; border-radius: 6px; font-weight: 500; display: block; }
+        .sidebar a:hover, .sidebar a.active { background-color: #a855f7; color: #ffffff; font-weight: bold; }
+        .sidebar .logout { margin-top: auto; background-color: #ea580c; color: white; text-align: center; }
+        .main-content { flex: 1; padding: 40px; background-color: #0d0f1d; display: flex; flex-direction: column; align-items: center; }
+        .pay-card { width: 100%; max-width: 480px; background-color: #182235; border: 1px solid #26354e; border-radius: 12px; padding: 30px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
+        h1 { font-size: 24px; margin-bottom: 10px; }
+        .qr-placeholder { width: 200px; height: 200px; background-color: #1f2b42; margin: 25px auto; border-radius: 8px; display: flex; justify-content: center; align-items: center; border: 2px dashed #334464; color: #64748b; font-weight: bold; }
+        .pix-code { background-color: #1f2b42; padding: 12px; border-radius: 6px; font-size: 13px; color: #cbd5e1; word-break: break-all; margin-bottom: 20px; border: 1px solid #334464; }
+        .btn-copy { width: 100%; background-color: #9333ea; color: white; border: none; border-radius: 8px; padding: 12px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .btn-copy:hover { background-color: #a855f7; }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h2>Criar Conta</h2>
-        <form method="POST" action="/">
-            <input type="text" name="nome" placeholder="Nome Completo" required>
-            <input type="email" name="email" placeholder="Seu E-mail" required>
-            <input type="password" name="senha" placeholder="Sua Senha" required>
-            <button type="submit" class="btn-submit">Cadastrar</button>
-        </form>
-        <a href="/login" class="link-footer">Já tem uma conta? Faça Login</a>
+    <div class="sidebar">
+        <h2>⚔️ GuildControl</h2>
+        <a href="/dashboard">Início / Painel da Guilda</a>
+        <a href="/membros">Gerenciar Membros</a>
+        <a href="/planos">Planos da Guilda</a>
+        <a href="/pontuacoes">Pontuação</a>
+        <a href="/servicos">Serviços</a>
+        <a href="/auth/logout" class="logout">Sair da Conta</a>
+    </div>
+    <div class="main-content">
+        <div class="pay-card">
+            <h1>Área de Pagamentos</h1>
+            <p style="color: #94a3b8; font-size: 14px;">Escaneie o QR Code abaixo para ativar seu plano via PIX</p>
+            <div class="qr-placeholder">QR CODE PIX</div>
+            <div class="pix-code">://exemplo.com</div>
+            <button class="btn-copy">Copiar Código Copia e Cola</button>
+        </div>
     </div>
 </body>
 </html>
+```
