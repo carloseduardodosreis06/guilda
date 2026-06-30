@@ -1,85 +1,57 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GuildControl - Membros</title>
+    <title>GuildControl - Meu Perfil</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { display: flex; background-color: #0b1426; color: #ffffff; min-height: 100vh; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { display: flex; flex-direction: row; background-color: #0b111e; color: #ffffff; min-height: 100vh; }
         
-        /* Menu Lateral */
-        .sidebar { width: 260px; background-color: #111e38; padding: 20px; display: flex; flex-direction: column; gap: 10px; border-right: 1px solid #1f355e; }
-        .sidebar h2 { font-size: 20px; color: #00bcd4; margin-bottom: 20px; text-align: center; font-weight: bold; }
-        .sidebar a { color: #cbd5e1; text-decoration: none; padding: 12px 15px; border-radius: 6px; font-weight: 500; transition: 0.3s; display: block; }
-        .sidebar a:hover, .sidebar a.active { background-color: #00bcd4; color: #0b1426; font-weight: bold; }
+        .sidebar { width: 280px; background-color: #111a2e; padding: 20px; display: flex; flex-direction: column; gap: 10px; border-right: 1px solid #1f2d4a; flex-shrink: 0; }
+        .sidebar h2 { font-size: 22px; color: #a855f7; margin-bottom: 25px; text-align: center; font-weight: bold; }
+        .sidebar a { color: #cbd5e1; text-decoration: none; padding: 12px 15px; border-radius: 6px; font-weight: 500; display: block; white-space: nowrap; }
+        .sidebar a:hover, .sidebar a.active { background-color: #a855f7; color: #ffffff; font-weight: bold; }
         .sidebar .logout { margin-top: auto; background-color: #ea580c; color: white; text-align: center; }
-        .sidebar .logout:hover { background-color: #dc2626; color: white; }
 
-        /* Conteúdo Principal */
-        .main-content { flex: 1; padding: 40px; }
-        .header-actions { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; border-bottom: 1px solid #1f355e; padding-bottom: 15px; }
-        .header-actions h1 { font-size: 28px; }
-        
-        /* Botão Adicionar Membro */
-        .btn-add { background-color: #00bcd4; color: #0b1426; text-decoration: none; padding: 12px 20px; border-radius: 6px; font-weight: bold; transition: 0.3s; box-shadow: 0 4px 10px rgba(0, 188, 212, 0.3); }
-        .btn-add:hover { background-color: #0097a7; transform: translateY(-2px); }
+        .main-content { flex: 1; padding: 30px; background-color: #0d0f1d; display: flex; justify-content: center; align-items: center; }
+        .profile-card { width: 100%; max-width: 480px; background-color: #182235; border: 1px solid #26354e; border-radius: 12px; padding: 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
+        h1 { font-size: 24px; margin-bottom: 20px; border-bottom: 1px solid #26354e; padding-bottom: 10px; color: #a855f7; }
+        .info-row { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #1f2b42; font-size: 15px; }
+        .info-row:last-child { border-bottom: none; }
+        .label { color: #64748b; }
+        .val { font-weight: bold; }
 
-        /* Tabela de Membros */
-        .table-container { background-color: #111e38; border: 1px solid #1f355e; border-radius: 10px; overflow: hidden; margin-top: 20px; }
-        table { width: 100%; border-collapse: collapse; text-align: left; }
-        th, td { padding: 15px 20px; border-bottom: 1px solid #1f355e; }
-        th { background-color: #162647; color: #00bcd4; font-weight: bold; text-transform: uppercase; font-size: 14px; }
-        tr:last-child td { border-bottom: none; }
-        tr:hover td { background-color: #162647; }
-        
-        .badge { background-color: #1e293b; color: #00bcd4; padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: bold; }
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            .sidebar { width: 100%; border-right: none; border-bottom: 1px solid #1f2d4a; flex-direction: row; overflow-x: auto; padding: 15px; gap: 8px; scrollbar-width: none; }
+            .sidebar::-webkit-scrollbar { display: none; }
+            .sidebar h2 { display: none; }
+            .sidebar a { padding: 10px 14px; font-size: 14px; }
+            .sidebar .logout { margin-top: 0; }
+            .main-content { padding: 20px; padding-top: 50px; }
+        }
     </style>
 </head>
 <body>
-
-    <!-- Menu Lateral -->
     <div class="sidebar">
         <h2>⚔️ GuildControl</h2>
-        <a href="/dashboard">Início / Painel</a>
-        <a href="/membros" class="active">Gerenciar Membros</a>
-        <a href="/planos">Planos da Guilda</a>
-        <a href="/pontuacoes">Pontuações</a>
-        <a href="/servicos">Serviços</a>
-        <a href="/auth/logout" class="logout">Sair da Conta</a>
+        <a href="/dashboard">Painel Inicial</a>
+        <a href="/guilda">Minha Guilda</a>
+        <a href="/ranking">Ranking Geral</a>
+        <a href="/pagamentos">Pagamentos / PIX</a>
+        <a href="/perfil" class="active">Meu Perfil</a>
+        <a href="/auth/logout" class="logout">Sair</a>
     </div>
-
-    <!-- Conteúdo da Página -->
     <div class="main-content">
-        <div class="header-actions">
-            <h1>Membros da Guilda</h1>
-            <!-- O BOTÃO DE ADICIONAR QUE ESTAVA FALTANDO FICOU AQUI: -->
-            <a href="/adicionar_membro" class="btn-add">+ Adicionar Membro</a>
-        </div>
-
-        <!-- Tabela Listando as Pessoas -->
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nome do Jogador</th>
-                        <th>E-mail</th>
-                        <th>Plano Atual</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Exemplo de membro na lista -->
-                    <tr>
-                        <td>Augusto Administrador</td>
-                        <td>augusto@email.com</td>
-                        <td><span class="badge">Slime</span></td>
-                        <td style="color: #22c55e; font-weight: bold;">Ativo</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="profile-card">
+            <h1>Meu Perfil</h1>
+            <div class="info-row"><span class="label">Status da Conta:</span><span class="val" style="color: #22c55e;">Ativo</span></div>
+            <div class="info-row"><span class="label">Plano Vinculado:</span><span class="val">Grátis</span></div>
+            <div class="info-row"><span class="label">Nível de Acesso:</span><span class="val">Administrador</span></div>
         </div>
     </div>
-
 </body>
 </html>
+```
