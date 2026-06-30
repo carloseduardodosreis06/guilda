@@ -17,8 +17,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Inicializa o banco de dados integrado ao app Flask
 db.init_app(app)
 
-app.config{
-["SECRET_KEY"] = os.environ.get("SECRET_KEY", "guildcontrol2026")
+app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "guildcontrol2026")
 
 # Cria as tabelas do banco de dados automaticamente se não existirem
 with app.app_context():
