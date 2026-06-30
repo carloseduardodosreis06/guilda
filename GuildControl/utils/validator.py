@@ -1,40 +1,22 @@
-# utils/validator.py
-
+```python
 import re
 
-def validar_email(email):
-    padrao = r"^[/w\.-]+@[\w\.-]+\.\w+$"
-    return re.match(padrao, email) is not None
-
-def validar_senha(senha):
-    if len(senha) < 8:
+class Validator:
+    @staticmethod
+    def validar_email(email):
+        """Verifica se o formato do e-mail é válido no cadastro"""
+        padrao = r'^[\w\.-]+@[\w\.-]+\.\w+$'
+        if re.match(padrao, email):
+            return True
         return False
-    if not re.search(r"[A-Z]", senha):
-        return False
-    if not re.search(r"[a-z]", senha):
-        return False
-    if not re.search(r"[0-9]", senha):
-        return False
-    if not re.search(r"[!@#$%^&*(),.?\":{}|<>]", senha):
-        return False
-    return True
 
-def validar_telefone(telefone):
-    telefone = re.sub(r"/D", "", telefone)
-    return len(telefone) in [10, 11]
+    @staticmethod
+    def limpar_e_validar_id(id_jogo):
+        """Remove letras e garante que o ID do jogo contenha apenas números"""
+        id_limpo = re.sub(r'\D', '', str(id_jogo))
+        if len(id_limpo) >= 5:
+            return id_limpo
+        return None
+```
 
-def validar_nick(nick):
-    return len(nick.strip()) >= 3
-
-def  validar_id_jogo(id_jogo):
-    return str(id_jogo).isdigit() 
-
-def validar_line(line):
-    return str(line).isdigit() 
-
-def validar_pontos(pontos):
-    try:
-        int(pontos)
-        return True
-    except ValueError:
         return False
