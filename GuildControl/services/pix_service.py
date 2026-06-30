@@ -1,50 +1,39 @@
-# services/pix_service.py
+```python id="lz7fn2"
+import qrcode
+import io
 
-from config import PIX_CHAVE
+class PixService:
+    def __init__(self):
+        # Sua chave cadastrada no sistema
+        self.chave_pix = "ce023233@gmail.com"
+        self.beneficiario = "GuildControl Admin"
+        self.cidade = "Imperatriz"
 
-pagamentos = []
+    def gerar_copia_e_cola(self, valor):
+        """Retorna o código Pix Copia e Cola formatado para o banco"""
+        # Formata o valor com duas casas decimais
+        valor_str = f"{valor:.2f}".replace(" ", "")
+        len_valor = f"{len(valor_str):02d}"
+        
+        # Estrutura estática básica de um payload Pix padrão
+        payload = (
+            "00020101021226580014br.gov.bcb.pix0119"
+            f"{self.chave_pix}52040000530398654"
+            f"{len_valor}{valor_str}5802BR5918"
+            f"{self.beneficiario}6010"
+            f"{self.cidade}62070503***6304"
+        )
+        return payload
 
-
-def criar_pagamento(nome, valor, status="Pendente"):
-    pagamentos.append({
-        "nome": nome,
-        "valor": valor,
-        "status": status
-    })
-
-
-def listar_pagamentos():
-    return pagamentos
-
-
-def confirmar_pagamento(nome):
-    for pagamento in pagamentos:
-        if pagamento["nome"] == nome:
-            pagamento["status"] = "Pago"
-            return True
-
-    return False
-
-
-def remover_pagamento(nome):
-    global pagamentos
-
-    pagamentos = [
-        pagamento for pagamento in pagamentos
-        if pagamento["nome"] != nome
-    ]
-
-
-def total_recebido():
-    total = 0
-
-    for pagamento in pagamentos:
-        if pagamento["status"] == "Pago":
-            total += pagamento["valor"]
-
-    return total
-
-def obter_pix():
-    return {
-        "chave": PIX_CHAVE
-    }
+    def gerar_qr_code(self, valor):
+        """Gera a imagem do QR Code para o usuário escanear na tela"""
+        payload = self.gerar_copia_e_cola(valor)
+        qr = qrcode.QRCode(version=1, box_size=10, border=4)
+        qr.add_data(payload)
+        qr.make(fit=True)
+        
+        img = qr.make_image(fill_color="black", back_color="white")
+        output = io.BytesIO()
+        img.save(output, format="PNG")
+        return output.getvalue()
+```
