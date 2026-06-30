@@ -1,4 +1,3 @@
-```python
 import re
 
 class Validator:
@@ -17,6 +16,3 @@ class Validator:
         if len(id_limpo) >= 5:
             return id_limpo
         return None
-```
-
-        return False
