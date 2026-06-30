@@ -1,4 +1,4 @@
-```python id="lz7fn2"
+id="lz7fn2"
 import qrcode
 import io
 
@@ -36,4 +36,3 @@ class PixService:
         output = io.BytesIO()
         img.save(output, format="PNG")
         return output.getvalue()
-```
