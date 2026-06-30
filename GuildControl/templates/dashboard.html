@@ -1,92 +1,68 @@
 <!DOCTYPE html>
-<html lang="pt-BR"
-
+<html lang="pt-br">
 <head>
-<meta charset="USF-8">
-<title>Guild Control - Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GuildControl - Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { display: flex; background-color: #0b1426; color: #ffffff; min-height: 100vh; }
+        
+        /* Menu Lateral */
+        .sidebar { width: 260px; background-color: #111e38; padding: 20px; display: flex; flex-direction: column; gap: 10px; border-right: 1px solid #1f355e; }
+        .sidebar h2 { font-size: 20px; color: #00bcd4; margin-bottom: 20px; text-align: center; font-weight: bold; }
+        .sidebar a { color: #cbd5e1; text-decoration: none; padding: 12px 15px; border-radius: 6px; font-weight: 500; transition: 0.3s; display: block; }
+        .sidebar a:hover, .sidebar a.active { background-color: #00bcd4; color: #0b1426; font-weight: bold; }
+        .sidebar .logout { margin-top: auto; background-color: #ea580c; color: white; text-align: center; }
+        .sidebar .logout:hover { background-color: #dc2626; color: white; }
 
-<style>
+        /* Conteúdo Principal */
+        .main-content { flex: 1; padding: 40px; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; border-bottom: 1px solid #1f355e; padding-bottom: 15px; }
+        .header h1 { font-size: 28px; }
+        .header span { color: #00bcd4; }
 
-body{
-    margin:0;
-    background:#0d0018;
-    color:white;
-    font-family:Arial;
-}
-
-.container{
-    padding:30px;
-}
-
-.card{
-    background:#1b0030;
-    padding:20px;
-    border-radius:15px;
-    margin-bottom:20px;
-}
-
-h1{
-    color:#c78cff;
-}
-
-button{
-    background:#9d00ff;
-    color:white;
-    border:0;
-    border-radius:10xp;
-}
-
-</style>
-
+        /* Cards de Resumo */
+        .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-top: 20px; }
+        .card { background-color: #111e38; padding: 25px; border-radius: 10px; border: 1px solid #1f355e; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
+        .card h3 { font-size: 16px; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase; }
+        .card p { font-size: 32px; font-weight: bold; color: #00bcd4; }
+    </style>
 </head>
-
 <body>
 
-<div class="container">
+    <!-- Menu Lateral -->
+    <div class="sidebar">
+        <h2>⚔️ GuildControl</h2>
+        <a href="/dashboard" class="active">Início / Painel</a>
+        <a href="/membros">Gerenciar Membros</a>
+        <a href="/planos">Planos da Guilda</a>
+        <a href="/pontuacoes">Pontuações</a>
+        <a href="/servicos">Serviços</a>
+        <a href="/auth/logout" class="logout">Sair da Conta</a>
+    </div>
 
-<h1>Guild Control</h1>
+    <!-- Conteúdo da Página -->
+    <div class="main-content">
+        <div class="header">
+            <h1>Bem-vindo ao Painel da sua Guilda, <span>Jogador</span>!</h1>
+        </div>
 
-<div class="card";
-
-<h2>Minha Guilda</h2>
-
-<p>Nome: MInha Guilda</p>
-
-<p>Membros: 0<p>
-
-<p>Lines: 10<p>
-
-</div>
-
-
-<div class="card">
-
-<h2>Pontuação</h2/
-
-<p>Horas jogadas: 0</p>
-
-<p>Guerra de Guilda: 0</P>
-
-</div>
-
-<div class="card">
-
-<h2>Ranking</h2>
-
-<p> 1° line<p>
-
-<p> 2° line<p>
-
-<p> 3° line<p>
-
-</div>
-
-<button>
-Adicionar Menbro
-</button>
-
-</div>
+        <div class="cards-grid">
+            <div class="card">
+                <h3>Total de Membros</h3>
+                <p>1</p> <!-- O Flask vai preencher isso depois -->
+            </div>
+            <div class="card">
+                <h3>Planos Ativos</h3>
+                <p>Slime</p>
+            </div>
+            <div class="card">
+                <h3>Pontos Globais</h3>
+                <p>150</p>
+            </div>
+        </div>
+    </div>
 
 </body>
-
 </html>
