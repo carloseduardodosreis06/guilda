@@ -1,7 +1,7 @@
 import os, qrcode, io, base64
 from flask import Flask, render_template, request, jsonify
 from datetime import datetime, timedelta
-from database.models import db, Usuario, Guilda, Membro, Pagamento
+from database.models import db, Usuario, MembroGuilda, SquadBot, Pagamento
 
 # Importação dos Blueprints organizados nas subpastas
 from routes.auth import auth
