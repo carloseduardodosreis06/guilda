@@ -1,4 +1,3 @@
-```python
 from flask import Blueprint, render_template, request, redirect, url_for
 
 admin_bp = Blueprint('admin', __name__)
@@ -17,4 +16,3 @@ def criar_squad():
         print(f"Bot criando squad: {nome_linha}")
         
         return redirect(url_for("admin.configurar_servicos"))
-```
