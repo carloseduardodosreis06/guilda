@@ -1,4 +1,3 @@
-```python
 from flask import Blueprint, render_template, request, redirect, url_for
 
 membros_bp = Blueprint('membros', __name__)
@@ -20,5 +19,3 @@ def adicionar_membro():
         print(f"Adicionando {nick} no Slot {slot} da {line}")
         
         return redirect(url_for("guildas.visualizar_guilda"))
-```
-"))
