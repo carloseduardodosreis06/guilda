@@ -1,4 +1,3 @@
-```python
 from flask import Blueprint, render_template, request, redirect, url_for
 
 auth = Blueprint('auth', __name__)
@@ -30,7 +29,4 @@ def login():
 
 @auth.route("/logout")
 def logout():
-    return redirect(url_for("auth.login"))
-```
-
     return redirect(url_for("auth.login"))
