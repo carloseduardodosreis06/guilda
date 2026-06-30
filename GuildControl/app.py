@@ -22,7 +22,7 @@ app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "guildcontrol2026")
 # Cria as tabelas do banco de dados automaticamente se não existirem
 with app.app_context():
     db.create_all()
-
+    
 # Registro dos Blueprints no servidor Flask
 app.register_blueprint(auth)
 app.register_blueprint(guildas)
