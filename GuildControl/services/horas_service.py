@@ -1,4 +1,3 @@
-```python
 from database.models import MembroGuilda
 
 class RankingService:
@@ -26,5 +25,3 @@ class RankingService:
         except Exception:
             # Caso o banco esteja vazio, retorna um exemplo padrão para não quebrar a tela
             return [{"nick": "Junio", "honra": 0, "guerra": 0, "total": 0}]
-```
-
